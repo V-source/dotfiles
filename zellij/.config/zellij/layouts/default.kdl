@@ -1,0 +1,32 @@
+layout {
+  pane_template name="custom" {}
+
+  tab hide_floating_panes=true {
+
+    pane size=1 borderless=true  {
+      plugin location="zjstatus"
+
+    }
+    custom
+
+  }
+
+  new_tab_template hide_floating_panes=true {
+
+    pane size=1 borderless=true  {
+      plugin location="zjstatus"
+    }
+    custom
+
+    floating_panes {
+      pane borderless=true {
+        name: "layzygit"
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+
+    }
+  }
+}

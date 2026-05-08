@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "Reledia/miller", rev = "40e0265" }, { use = "Ape/mediainfo", rev = "c69314e" }, { use = "AnirudhG07/rich-preview", rev = "fe43219" }, { use = "Sonico98/exifaudio", rev = "d794614" }]
+
+[flavor]
+deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "8465c93" }, { use = "yazi-rs/flavors:catppuccin-latte", rev = "8465c93" }, { use = "kmlupreti/ayu-dark", rev = "8d38bfd" }]

@@ -1,0 +1,92 @@
+
+layout {
+  cwd "~/git/components"
+  //TAB 1
+  tab name="dev" {
+
+
+      pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+      }
+
+
+    pane split_direction="horizontal"{
+
+      pane{
+        size "70%" 
+        name "NVIM" 
+        command "nvim"
+      } 
+
+    // VERTICAL LAYOUT
+    pane split_direction="vertical" size="30%" {
+        pane {
+          size "50%"
+          cwd "~/git/components/electron"
+          name "electron"
+          command "npm"
+          args "run" "electron"
+        }
+        pane {
+          size "50%"
+          cwd "~/git/components/react"
+          name "PEACLOCK"
+          name "react"
+          command "npm"
+          args "run" "dev"
+        }
+      /////////////////////////////////////////////
+
+      // SECOND COLUMN LAYOUT
+      /////////////////////////////////////////////
+
+    }
+
+    }
+
+
+
+  }
+
+  /////////////////////////////////////////////
+  // TAB 2
+  tab name="LEARNINGS" cwd="~/git/dev-learnings" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    ////////////////////////
+    pane split_direction="vertical" {
+      name "NVIM"
+      size "70%"
+      command "nvim"
+    }
+    pane {
+      name "algo"
+      size "30%"
+    }
+  }
+
+  /////////////////////////////////////////////
+  // TAB 3
+  tab name="MUSIC" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    ////////////////////////////////////////
+    pane split_direction="vertical" {
+      name "MUSIKCUBE"
+      size "70%"
+      command "musikcube"
+    }
+    pane {
+      name "CAVA"
+      size "30%"
+      command "cava"
+    }
+  }
+
+}

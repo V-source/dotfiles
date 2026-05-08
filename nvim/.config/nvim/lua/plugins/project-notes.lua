@@ -1,0 +1,28 @@
+return {
+  -- "https://codeberg.org/ravnheim/project_notes",
+  -- name = "project_notes",
+  -- config = function()
+  --   require("project_notes").setup({
+  --     notes_path= ".notes",
+  --     -- notes_path = ".notes",
+  --     autosave = true,
+  --     extension = ".md",
+  --     sign = "󱞁 Note",
+  --     confirmation = true, -- confirm before deleting notes
+  --     highlight = {
+  --       -- fg = '#cdd6f4',
+  --       fg = '#fab387',
+  --       -- bg = "#BB1B47",
+  --       bg = '#1e1e2e',
+  --     },
+  --     keymaps = {
+  --       main = "<leader>nm",
+  --       toggle = "<leader>nt",
+  --       list = "<leader>nl",
+  --       delete = "<leader>nd",
+  --       delete_empty = "<leader>ne",
+  --       merged = "<leader>nmerge",
+  --     },
+  --   })
+  -- end
+}

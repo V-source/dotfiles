@@ -1,0 +1,144 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "engram": {
+      "command": [
+        "engram",
+        "mcp",
+        "--tools=agent"
+      ],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "agent": {
+    "sdd-orchestrator": {
+      "mode": "primary",
+      "description": "Agent Teams Orchestrator - coordinates sub-agents, never does work inline",
+      "prompt": "AGENT TEAMS ORCHESTRATOR\n========================\n\nYou are a COORDINATOR, not an executor. Your only job is to maintain one thin conversation thread with the user, delegate ALL real work to sub-agents via Task (sync) or delegate (async background), and synthesize their results.\n\nDELEGATION RULES (ALWAYS ACTIVE):\nThese apply to EVERY request, not just SDD.\n1. NEVER do real work inline. Reading code, writing code, analyzing, designing, testing = delegate to sub-agent.\n   Use Task for synchronous results you need before continuing. Use delegate for parallel/background work.\n2. Prefer delegate (async) over Task (sync). Only use Task when you MUST have the result before your next action.\n3. You may: answer short questions, coordinate sub-agents, show summaries, ask for decisions, track state.\n4. Self-check before every response: Am I about to read code, write code, or do analysis? If yes, delegate.\n5. Why: You are always-loaded context. Heavy inline work bloats context, triggers compaction, loses state. Sub-agents get fresh context.\n\nANTI-PATTERNS (never do these):\n- DO NOT read source code to understand the codebase. Delegate.\n- DO NOT write or edit code. Delegate.\n- DO NOT write specs, proposals, designs, tasks. Delegate.\n- DO NOT run tests or builds. Delegate.\n- DO NOT do quick analysis inline to save time. It bloats context.\n\nBACKGROUND DELEGATION:\nWhen the plugin is installed, you also have:\n- delegate(prompt, agent) - async, returns ID immediately, agent works in background\n- delegation_read(id) - retrieve result if notification was lost during compaction\n- delegation_list() - list delegations (use sparingly, NEVER poll)\nUse delegate for parallel phases (e.g. spec + design simultaneously) or when you want to keep working while a sub-agent runs. Prefer delegate over Task when possible.\n\nSDD COMMANDS:\n/sdd-init - Bootstrap SDD context in a project. Detects stack, bootstraps persistence, builds skill registry.\n/sdd-explore <topic> - Investigate an idea. Reads codebase, compares approaches, identifies risks.\n/sdd-new <name> - Start a new change. Delegates explore + propose to sub-agents.\n/sdd-continue - Run the next dependency-ready phase via sub-agent(s).\n/sdd-ff <name> - Fast-forward planning (proposal -> specs -> design -> tasks).\n/sdd-apply - Implement tasks in batches, checks off items as it goes.\n/sdd-verify - Validate implementation against specs. Reports CRITICAL / WARNING / SUGGESTION.\n/sdd-archive - Close a change and persist final state.\n\nSKILL RESOLUTION PROTOCOL (ALWAYS ACTIVE):\n============================================\nThis protocol injects project-specific skills into every sub-agent that touches code. It applies to ALL delegations, not just SDD.\n\n1. SESSION START: Read .atl/skill-registry.md and cache the Compact Rules section.\n   - If no registry found, warn: \"No skill registry found - sub-agents will work without project-specific standards. Run sdd-init or skill-registry to fix.\"\n\n2. BEFORE EVERY DELEGATION that involves reading/writing/reviewing code:\n   a) Match skills on TWO dimensions:\n      - CODE CONTEXT: file patterns (.tsx -> react, .py -> python, etc.)\n      - TASK CONTEXT: actions (create PR -> branch-pr, run tests -> testing skill, etc.)\n   b) Extract the matching skill blocks from Compact Rules (max 5 skills, prioritize code context)\n   c) Inject as \"## Project Standards (auto-resolved)\" at the TOP of the sub-agent prompt (BEFORE task instructions)\n\n3. INJECTION FORMAT:\n   ## Project Standards (auto-resolved)\n\n   {paste compact rules blocks here}\n\n   [then continue with task instructions]\n\n4. COMPACTION SAFETY: After any compaction, re-read the registry before next delegation.\n   If a sub-agent reports \"fallback-registry\", \"fallback-path\", or \"none\" in skill_resolution:\n   - Re-read .atl/skill-registry.md immediately\n   - Inject Project Standards in ALL subsequent delegations\n   - Log: \"Skill cache miss detected - reloaded registry\"\n\n5. FALLBACK (if no registry exists): Skip skill injection, proceed without.\n\nPERSISTENCE:\nRead your skill files for how each phase persists artifacts:\n- engram: mem_save / mem_search / mem_get_observation (Engram MCP)\n- openspec: filesystem artifacts in openspec/changes/\n- hybrid: both\n- none: return only\n\nSAMPLE WORKFLOW:\n1. User says: /sdd-init\n   -> Task(sdd-init, skill: ...)\n   -> Return summary\n2. User says: /sdd-new add-dark-mode\n   -> Task(sdd-explore, {topic: dark-mode})\n   -> Task(sdd-propose, {change-name: add-dark-mode, exploration: ...})\n   -> Return proposal summary\n3. User says: /sdd-continue\n   -> Read current phase from artifact store\n   -> Task(sdd-spec, {change-name: add-dark-mode})\n   -> Return spec summary\n   -> Ask user to review and approve\n4. User says: /sdd-apply\n   -> Task(sdd-apply, {change-name: add-dark-mode, tasks: ...})\n   -> Return implementation summary\n5. User says: /sdd-verify\n   -> Task(sdd-verify, {change-name: add-dark-mode})\n   -> Return verification report\n\nPHASE ORDER (DAG):\ninit -> explore -> propose -> [spec + design] -> tasks -> apply -> verify -> archive\n\nSKIP LOGIC:\n- explore is optional if user already has context\n- spec and design can run in parallel (delegate both simultaneously)\n- If a phase artifact exists, READ it first before re-running\n\nSTAY THIN:\nYou are the conversation anchor. Keep your context minimal. Heavy lifting goes to sub-agents.\n",
+      "permission": {
+        "task": {
+          "*": "deny",
+          "sdd-*": "allow"
+        }
+      },
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "delegate": true,
+        "delegation_read": true,
+        "delegation_list": true
+      }
+    },
+    "sdd-init": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Bootstrap SDD context and project configuration",
+      "prompt": "You are an SDD sub-agent for the init phase. Read your skill file at ~/.config/opencode/skills/sdd-init/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-explore": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Investigate codebase and think through ideas",
+      "prompt": "You are an SDD sub-agent for the explore phase. Read your skill file at ~/.config/opencode/skills/sdd-explore/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-propose": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Create change proposals from explorations",
+      "prompt": "You are an SDD sub-agent for the propose phase. Read your skill file at ~/.config/opencode/skills/sdd-propose/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-spec": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Write detailed specifications from proposals",
+      "prompt": "You are an SDD sub-agent for the spec phase. Read your skill file at ~/.config/opencode/skills/sdd-spec/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-design": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Create technical design from proposals",
+      "prompt": "You are an SDD sub-agent for the design phase. Read your skill file at ~/.config/opencode/skills/sdd-design/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-tasks": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Break down specs and designs into implementation tasks",
+      "prompt": "You are an SDD sub-agent for the tasks phase. Read your skill file at ~/.config/opencode/skills/sdd-tasks/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-apply": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Implement code changes from task definitions",
+      "prompt": "You are an SDD sub-agent for the apply phase. Read your skill file at ~/.config/opencode/skills/sdd-apply/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-verify": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Validate implementation against specs",
+      "prompt": "You are an SDD sub-agent for the verify phase. Read your skill file at ~/.config/opencode/skills/sdd-verify/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "sdd-archive": {
+      "mode": "subagent",
+      "hidden": true,
+      "description": "Archive completed change artifacts",
+      "prompt": "You are an SDD sub-agent for the archive phase. Read your skill file at ~/.config/opencode/skills/sdd-archive/SKILL.md and follow its instructions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    }
+  }
+}

@@ -1,0 +1,958 @@
+/**
+ * API Key Service - Swagger/OpenAPI Documentation
+ * 
+ * Documentación completa de la API para el servicio de gestión de API Keys.
+ */
+
+export const apiKeyServiceDoc = {
+  openapi: '3.0.0',
+  info: {
+    title: 'API Key Service',
+    version: '1.0.0',
+    description: `
+Servicio de gestión de API Keys con soporte para:
+- Creación y validación de API Keys
+- Scopes/permisos granulares
+- Rate limiting por API Key
+- IP Whitelist opcional
+- Tracking de uso
+
+## Características Principales
+- **Dual Authentication**: API Key + JWT
+- **Scopes**: Permisos granulares (read, write, admin)
+- **Rate Limiting**: Límites configurables por key
+- **IP Whitelist**: Restricción de IPs opcional
+- **Usage Tracking**: Contador de uso y última vez usada
+
+## Formato de API Key
+\`\`\`
+pk_live_[64_char_hex_string]
+\`\`\`
+    `,
+    contact: {
+      name: 'API Support',
+      email: 'support@example.com',
+    },
+    license: {
+      name: 'MIT',
+      url: 'https://opensource.org/licenses/MIT',
+    },
+  },
+  servers: [
+    {
+      url: 'https://api.example.com/v1',
+      description: 'Production server',
+    },
+    {
+      url: 'https://staging-api.example.com/v1',
+      description: 'Staging server',
+    },
+    {
+      url: 'http://localhost:3000/v1',
+      description: 'Local development',
+    },
+  ],
+  tags: [
+    {
+      name: 'API Keys',
+      description: 'Gestión de API Keys',
+    },
+    {
+      name: 'Authentication',
+      description: 'Endpoints de autenticación con API Key',
+    },
+    {
+      name: 'Admin',
+      description: 'Endpoints administrativos',
+    },
+  ],
+  paths: {
+    '/api-keys': {
+      post: {
+        tags: ['API Keys'],
+        summary: 'Crear nueva API Key',
+        description: 'Crea una nueva API Key. La key en texto plano solo se muestra una vez.',
+        operationId: 'createApiKey',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['name', 'createdBy'],
+                properties: {
+                  name: {
+                    type: 'string',
+                    description: 'Nombre descriptivo de la API Key',
+                    example: 'Production API Key',
+                  },
+                  description: {
+                    type: 'string',
+                    description: 'Descripción opcional',
+                    example: 'Key para producción',
+                  },
+                  scopes: {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                      enum: ['read', 'write', 'admin', 'webhooks'],
+                    },
+                    description: 'Scopes/permisos asignados',
+                    default: ['read'],
+                    example: ['read', 'write'],
+                  },
+                  expiresAt: {
+                    type: 'string',
+                    format: 'date-time',
+                    description: 'Fecha de expiración (opcional)',
+                    example: '2024-12-31T23:59:59Z',
+                  },
+                  metadata: {
+                    type: 'object',
+                    properties: {
+                      service: {
+                        type: 'string',
+                        description: 'Nombre del servicio',
+                        example: 'my-service',
+                      },
+                      environment: {
+                        type: 'string',
+                        enum: ['development', 'staging', 'production'],
+                        description: 'Entorno',
+                        example: 'production',
+                      },
+                      ipWhitelist: {
+                        type: 'array',
+                        items: {
+                          type: 'string',
+                          format: 'ipv4',
+                        },
+                        description: 'Lista de IPs permitidas',
+                        example: ['192.168.1.1', '10.0.0.1'],
+                      },
+                    },
+                  },
+                  createdBy: {
+                    type: 'string',
+                    description: 'ID del usuario que crea la key',
+                    example: 'user_123456',
+                  },
+                },
+              },
+              example: {
+                name: 'Production API Key',
+                description: 'Key para el servicio de producción',
+                scopes: ['read', 'write'],
+                expiresAt: '2024-12-31T23:59:59Z',
+                metadata: {
+                  service: 'api-gateway',
+                  environment: 'production',
+                  ipWhitelist: ['203.0.113.1'],
+                },
+                createdBy: 'user_123456',
+              },
+            },
+          },
+        },
+        responses: {
+          '201': {
+            description: 'API Key creada exitosamente',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      type: 'object',
+                      properties: {
+                        apiKey: {
+                          $ref: '#/components/schemas/ApiKeyResponse',
+                        },
+                        plainKey: {
+                          type: 'string',
+                          description: 'API Key en texto plano (SOLO SE MUESTRA UNA VEZ)',
+                          example: 'pk_live_abc123...',
+                        },
+                      },
+                    },
+                  },
+                },
+                example: {
+                  success: true,
+                  data: {
+                    apiKey: {
+                      id: 'key_abc123',
+                      name: 'Production API Key',
+                      description: 'Key para el servicio de producción',
+                      scopes: ['read', 'write'],
+                      isActive: true,
+                      expiresAt: '2024-12-31T23:59:59Z',
+                      usageCount: 0,
+                      lastUsedAt: null,
+                      metadata: {
+                        service: 'api-gateway',
+                        environment: 'production',
+                      },
+                      createdAt: '2024-01-15T10:30:00Z',
+                      updatedAt: '2024-01-15T10:30:00Z',
+                    },
+                    plainKey: 'pk_live_abc123def456abc789def012abc34567',
+                  },
+                },
+              },
+            },
+          },
+          '400': {
+            description: 'Error de validación',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Error',
+                },
+              },
+            },
+          },
+          '401': {
+            description: 'No autorizado',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Error',
+                },
+              },
+            },
+          },
+        },
+      },
+      get: {
+        tags: ['API Keys'],
+        summary: 'Listar API Keys',
+        description: 'Lista todas las API Keys con filtros opcionales y paginación.',
+        operationId: 'listApiKeys',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'page',
+            in: 'query',
+            schema: {
+              type: 'integer',
+              default: 1,
+            },
+            description: 'Número de página',
+          },
+          {
+            name: 'perPage',
+            in: 'query',
+            schema: {
+              type: 'integer',
+              default: 20,
+              maximum: 100,
+            },
+            description: 'Elementos por página',
+          },
+          {
+            name: 'isActive',
+            in: 'query',
+            schema: {
+              type: 'boolean',
+            },
+            description: 'Filtrar por estado activo',
+          },
+          {
+            name: 'environment',
+            in: 'query',
+            schema: {
+              type: 'string',
+              enum: ['development', 'staging', 'production'],
+            },
+            description: 'Filtrar por entorno',
+          },
+          {
+            name: 'sortBy',
+            in: 'query',
+            schema: {
+              type: 'string',
+              enum: ['createdAt', 'lastUsedAt', 'name'],
+              default: 'createdAt',
+            },
+            description: 'Campo para ordenar',
+          },
+          {
+            name: 'sortOrder',
+            in: 'query',
+            schema: {
+              type: 'string',
+              enum: ['asc', 'desc'],
+              default: 'desc',
+            },
+            description: 'Dirección del orden',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Lista de API Keys',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      type: 'array',
+                      items: {
+                        $ref: '#/components/schemas/ApiKeyResponse',
+                      },
+                    },
+                    pagination: {
+                      $ref: '#/components/schemas/Pagination',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api-keys/{id}': {
+      get: {
+        tags: ['API Keys'],
+        summary: 'Obtener API Key por ID',
+        description: 'Obtiene los detalles de una API Key específica.',
+        operationId: 'getApiKeyById',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'ID de la API Key',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'API Key encontrada',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      $ref: '#/components/schemas/ApiKeyResponse',
+                    },
+                  },
+                },
+              },
+            },
+          },
+          '404': {
+            description: 'API Key no encontrada',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Error',
+                },
+              },
+            },
+          },
+        },
+      },
+      put: {
+        tags: ['API Keys'],
+        summary: 'Actualizar API Key',
+        description: 'Actualiza los campos de una API Key existente.',
+        operationId: 'updateApiKey',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'ID de la API Key',
+          },
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  name: {
+                    type: 'string',
+                    example: 'Updated Key Name',
+                  },
+                  description: {
+                    type: 'string',
+                    example: 'Updated description',
+                  },
+                  scopes: {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                      enum: ['read', 'write', 'admin', 'webhooks'],
+                    },
+                    example: ['read', 'write', 'admin'],
+                  },
+                  expiresAt: {
+                    type: 'string',
+                    format: 'date-time',
+                    nullable: true,
+                    example: null,
+                  },
+                  metadata: {
+                    type: 'object',
+                    properties: {
+                      service: {
+                        type: 'string',
+                        example: 'updated-service',
+                      },
+                      environment: {
+                        type: 'string',
+                        enum: ['development', 'staging', 'production'],
+                      },
+                      ipWhitelist: {
+                        type: 'array',
+                        items: {
+                          type: 'string',
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          '200': {
+            description: 'API Key actualizada',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      $ref: '#/components/schemas/ApiKeyResponse',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      delete: {
+        tags: ['API Keys'],
+        summary: 'Eliminar API Key',
+        description: 'Elimina permanentemente una API Key.',
+        operationId: 'deleteApiKey',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'ID de la API Key',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'API Key eliminada',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    message: {
+                      type: 'string',
+                      example: 'API Key deleted successfully',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api-keys/{id}/revoke': {
+      post: {
+        tags: ['API Keys'],
+        summary: 'Revocar API Key',
+        description: 'Revoca (desactiva) una API Key sin eliminarla.',
+        operationId: 'revokeApiKey',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'ID de la API Key',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'API Key revocada',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      $ref: '#/components/schemas/ApiKeyResponse',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api-keys/{id}/rotate': {
+      post: {
+        tags: ['API Keys'],
+        summary: 'Rotar API Key',
+        description: 'Rota una API Key generando una nueva y revocando la anterior.',
+        operationId: 'rotateApiKey',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+            },
+            description: 'ID de la API Key a rotar',
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'API Key rotada',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      type: 'object',
+                      properties: {
+                        oldKey: {
+                          $ref: '#/components/schemas/ApiKeyResponse',
+                        },
+                        newKey: {
+                          type: 'object',
+                          properties: {
+                            apiKey: {
+                              $ref: '#/components/schemas/ApiKeyResponse',
+                            },
+                            plainKey: {
+                              type: 'string',
+                              example: 'pk_live_newkey...',
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api-keys/validate': {
+      post: {
+        tags: ['Authentication'],
+        summary: 'Validar API Key',
+        description: 'Valida una API Key para autenticación.',
+        operationId: 'validateApiKey',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['apiKey'],
+                properties: {
+                  apiKey: {
+                    type: 'string',
+                    description: 'API Key a validar',
+                    example: 'pk_live_abc123...',
+                  },
+                  clientIp: {
+                    type: 'string',
+                    description: 'IP del cliente (opcional, para validación de whitelist)',
+                    example: '192.168.1.1',
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          '200': {
+            description: 'Validación exitosa',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    valid: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    authContext: {
+                      type: 'object',
+                      properties: {
+                        type: {
+                          type: 'string',
+                          example: 'api-key',
+                        },
+                        apiKeyId: {
+                          type: 'string',
+                          example: 'key_abc123',
+                        },
+                        name: {
+                          type: 'string',
+                          example: 'Production API Key',
+                        },
+                        scopes: {
+                          type: 'array',
+                          items: {
+                            type: 'string',
+                          },
+                          example: ['read', 'write'],
+                        },
+                        service: {
+                          type: 'string',
+                          example: 'api-gateway',
+                        },
+                        environment: {
+                          type: 'string',
+                          example: 'production',
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          '401': {
+            description: 'API Key inválida',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    valid: {
+                      type: 'boolean',
+                      example: false,
+                    },
+                    reason: {
+                      type: 'string',
+                      example: 'API key is revoked',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api-keys/stats': {
+      get: {
+        tags: ['Admin'],
+        summary: 'Obtener estadísticas',
+        description: 'Obtiene estadísticas del uso de API Keys.',
+        operationId: 'getApiKeyStats',
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Estadísticas',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    success: {
+                      type: 'boolean',
+                      example: true,
+                    },
+                    data: {
+                      type: 'object',
+                      properties: {
+                        total: {
+                          type: 'integer',
+                          example: 100,
+                        },
+                        active: {
+                          type: 'integer',
+                          example: 85,
+                        },
+                        inactive: {
+                          type: 'integer',
+                          example: 15,
+                        },
+                        totalUsage: {
+                          type: 'integer',
+                          example: 15000,
+                        },
+                        byEnvironment: {
+                          type: 'array',
+                          items: {
+                            type: 'object',
+                            properties: {
+                              environment: {
+                                type: 'string',
+                                example: 'production',
+                              },
+                              count: {
+                                type: 'integer',
+                                example: 50,
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        description: 'JWT token para autenticación administrativa',
+      },
+      apiKeyAuth: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'X-API-Key',
+        description: 'API Key para autenticación',
+      },
+    },
+    schemas: {
+      ApiKeyResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            example: 'key_abc123',
+          },
+          name: {
+            type: 'string',
+            example: 'Production API Key',
+          },
+          description: {
+            type: 'string',
+            nullable: true,
+            example: 'Key for production services',
+          },
+          scopes: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: ['read', 'write', 'admin', 'webhooks'],
+            },
+            example: ['read', 'write'],
+          },
+          isActive: {
+            type: 'boolean',
+            example: true,
+          },
+          expiresAt: {
+            type: 'string',
+            format: 'date-time',
+            nullable: true,
+            example: '2024-12-31T23:59:59Z',
+          },
+          usageCount: {
+            type: 'integer',
+            example: 1500,
+          },
+          lastUsedAt: {
+            type: 'string',
+            format: 'date-time',
+            nullable: true,
+            example: '2024-01-15T14:30:00Z',
+          },
+          metadata: {
+            type: 'object',
+            properties: {
+              service: {
+                type: 'string',
+                example: 'api-gateway',
+              },
+              environment: {
+                type: 'string',
+                enum: ['development', 'staging', 'production'],
+                example: 'production',
+              },
+              ipWhitelist: {
+                type: 'array',
+                items: {
+                  type: 'string',
+                },
+              },
+            },
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time',
+            example: '2024-01-15T10:30:00Z',
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time',
+            example: '2024-01-15T10:30:00Z',
+          },
+        },
+      },
+      Error: {
+        type: 'object',
+        properties: {
+          success: {
+            type: 'boolean',
+            example: false,
+          },
+          error: {
+            type: 'object',
+            properties: {
+              code: {
+                type: 'string',
+                example: 'VALIDATION_ERROR',
+              },
+              message: {
+                type: 'string',
+                example: 'Invalid request data',
+              },
+              details: {
+                type: 'array',
+                items: {
+                  type: 'object',
+                },
+              },
+            },
+          },
+        },
+      },
+      Pagination: {
+        type: 'object',
+        properties: {
+          page: {
+            type: 'integer',
+            example: 1,
+          },
+          perPage: {
+            type: 'integer',
+            example: 20,
+          },
+          total: {
+            type: 'integer',
+            example: 100,
+          },
+          totalPages: {
+            type: 'integer',
+            example: 5,
+          },
+          hasNextPage: {
+            type: 'boolean',
+            example: true,
+          },
+          hasPrevPage: {
+            type: 'boolean',
+            example: false,
+          },
+        },
+      },
+    },
+  },
+};
+
+export default apiKeyServiceDoc;

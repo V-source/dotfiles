@@ -1,0 +1,191 @@
+* {
+    selected-normal-foreground:  rgba ( 249, 249, 249, 100 % );
+    foreground:                  rgba ( 196, 203, 212, 100 % );
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 64, 69, 82, 59 % );
+    red:                         rgba ( 220, 50, 47, 100 % );
+    selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
+    blue:                        rgba ( 38, 139, 210, 100 % );
+    urgent-foreground:           rgba ( 204, 102, 102, 100 % );
+    alternate-urgent-background: rgba ( 75, 81, 96, 90 % );
+    active-foreground:           rgba ( 101, 172, 255, 100 % );
+    lightbg:                     rgba ( 238, 232, 213, 100 % );
+    selected-active-foreground:  rgba ( 249, 249, 249, 100 % );
+    alternate-active-background: rgba ( 75, 81, 96, 89 % );
+    background:                  rgba ( 45, 48, 59, 95 % );
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    lightfg:                     rgba ( 88, 104, 117, 100 % );
+    selected-normal-background:  rgba ( 64, 132, 214, 100 % );
+    border-color:                rgba ( 124, 131, 137, 100 % );
+    spacing:                     2;
+    separatorcolor:              rgba ( 29, 31, 33, 100 % );
+    urgent-background:           rgba ( 29, 31, 33, 17 % );
+    selected-urgent-background:  rgba ( 165, 66, 66, 100 % );
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 29, 31, 33, 17 % );
+    selected-active-background:  rgba ( 68, 145, 237, 100 % );
+}
+
+* {
+  rosewater: #f5e0dc;
+  flamingo: #f2cdcd;
+  pink: #f5c2e7;
+  mauve: #cba6f7;
+  red: #f38ba8;
+  maroon: #eba0ac;
+  peach: #fab387;
+  yellow: #f9e2af;
+  green: #a6e3a1;
+  teal: #94e2d5;
+  sky: #89dceb;
+  sapphire: #74c7ec;
+  blue: #89b4fa;
+  lavender: #b4befe;
+  text: #cdd6f4;
+  subtext1: #bac2de;
+  subtext0: #a6adc850;
+  overlay2: #9399b2;
+  overlay1: #7f849c;
+  overlay0: #6c7086;
+  surface2: #585b70;
+  surface1: #45475a;
+  surface0: #313244;
+  base: #1e1e2e;
+  mantle: #181825;
+  crust: #11111b;
+  }
+
+
+
+window {
+    // location: center;
+  // location : northwest;
+  location : west;
+  x-offset : 7%;
+  // y-offset : 26px;
+    // width: 480px;
+    width: 35%;
+    // height: 720px;
+    height: 90%;
+    border:           1px;
+  border-color: @lavender;
+    padding:          25px;
+    background-color: #1e1e2e;
+    border-radius: 10px;
+}
+
+mainbox {
+    border:  0px;
+    padding: 0px 0px 0px 0px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+listview {
+    fixed-height: 0;
+    border:       0px 0px 0px 0px ;
+    border-color: @lavender;
+    spacing:      12px ;
+    scrollbar:    true;
+    padding:      27.5px 5px 5px 5px;
+    background-color: transparent;
+    border-radius: 10px;
+
+}
+
+textbox {
+    text-color: #181825;
+}
+
+
+element {
+  orientation: horizontal;
+  children: [ element-text, element-icon ];
+  spacing: 0px;
+  padding: 6px 12px;
+
+}
+
+element-icon {
+    size: 1em;
+    background-color: transparent;
+    
+}
+
+inputbar {
+    margin: 0px 0px 20px;
+    text-color: @sky;
+    padding: 12px;
+    border: 0px;
+    border-color: @green;
+    border-radius: 10px;
+    background-color: @base;
+    children : [ icon-search, entry ];
+}
+entry {
+    spacing:    0;
+    // text-color: #181825;
+    text-color: @text;
+    margin: 0px 0px 0px 10px;
+}
+
+icon-search {
+  expand   : false;
+  filename : "search-symbolic";
+  size     : 24px;
+}
+
+prompt {
+    spacing:    0;
+    text-color: red;
+}
+
+
+element.normal.normal {
+  background-color: transparent;
+  text-color: @text;
+}
+element.normal.urgent {
+  background-color: transparent;
+}
+element.normal.active {
+  background-color: transparent;
+}
+element.selected.normal {
+  background-color: transparent;
+    border-color: @green;
+    background-color: #11111b80;
+    border: 0px;
+    border-radius: 50px;
+  text-color: @green;
+}
+element.selected.urgent {
+  background-color: transparent;
+}
+element.selected.active {
+  background-color: transparent;
+}
+element.alternate.normal {
+  background-color: transparent;
+  text-color: @text;
+}
+element.alternate.urgent {
+  background-color: transparent;
+}
+element.alternate.active {
+}
+
+
+
+scrollbar {
+    width:        2px ;
+    border:       0;
+    handle-color: @green;
+    handle-width: 4px ;
+    padding:      0;
+
+}
+// @theme "/usr/share/rofi/themes/catppuccin-mocha.rasi"

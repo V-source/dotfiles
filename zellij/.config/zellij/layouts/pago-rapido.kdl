@@ -1,0 +1,109 @@
+layout {
+  cwd "~/git/pago-rapido"
+  //TAB 1
+  tab name="dev" {
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    // pane split_direction="vertical" size=1 {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    // }
+    // VERTICAL LAYOUT
+    pane split_direction="vertical" size="25%" {
+
+      // FIRST COLUMN LAYOUT - HORIZONTAL CHILDREN
+      pane split_direction="horizontal" {
+        pane {
+          size "25%"
+          name "ELECTRON CONSOLE"
+          command "npm"
+          args "run" "dev"
+        }
+        // pane {
+        //   size "20%"
+        //   name "PEACLOCK"
+        //   command "peaclock"
+        // }
+      }
+      /////////////////////////////////////////////
+
+      // SECOND COLUMN LAYOUT
+      pane{
+        focus true
+        size "75%" 
+        name "NVIM" 
+        command "nvim"
+      } 
+
+      // pane split_direction="horizontal" {
+      //   pane{
+      //     size "60%" 
+      //     name "NVIM" 
+      //     command "nvim"
+      //     args "todo.md"
+      //   } 
+      //   pane {
+      //     size "40%"
+      //     name "kew"
+      //     command "kew"
+      //   }
+      // }
+      /////////////////////////////////////////////
+
+    }
+
+
+
+  }
+
+  /////////////////////////////////////////////
+  // TAB 2
+  tab name="LEARNINGS" cwd="~/git/dev-learnings" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    ////////////////////////
+    pane split_direction="vertical" {
+      name "NVIM"
+      size "80%"
+      command "nvim"
+    }
+    pane {
+      name "algo"
+      size "20%"
+    }
+  }
+
+  /////////////////////////////////////////////
+  // TAB 3
+  tab name="LAZYGIT" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    ////////////////////////////////////////
+    pane split_direction="vertical" {
+      // name "MUSIKCUBE"
+      size "100%"
+      command "lazygit"
+    }
+    // pane {
+    //   name "CAVA"
+    //   size "30%"
+    //   command "cava"
+    // }
+  }
+
+  // tab name="MUSIC" {
+  //   pane size=1 borderless=true{
+  //     plugin location="zellij:tab-bar"
+  //   }
+  //   pane split_direction="vertical" {
+  //     size "100%"
+  //     command "kew"
+  //   }
+  // }
+}

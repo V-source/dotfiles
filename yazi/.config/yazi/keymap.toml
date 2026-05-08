@@ -1,0 +1,6 @@
+[mgr]
+# Atajo de teclado: <F12>
+# i = { run = 'shell "feh --bg-fill \"$1\""', block = false, orphan = true }
+prepend_keymap = [
+	{ on = "<S-w>", run = "feh --bg-fill \"$1\"', desc = 'Single command with `Ctrl + a`" },
+]

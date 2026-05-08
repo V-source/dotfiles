@@ -1,0 +1,62 @@
+layout {
+
+  tab name="1" cwd="~/git/express" hide_floating_panes=true {
+    // pane size=1 borderless=true {
+    //   plugin location="zellij:tab-bar"
+    // }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    pane split_direction="vertical" {
+      pane{
+        cwd "~/git/express"
+        focus true
+        name "Editor" 
+        command "nvim"
+      } 
+      //   ──────────────────────────────────────────────────────────────────────
+      pane {
+        cwd "~/git/express"
+        size "30%"
+        name "CLI"
+      }
+    }
+  }
+  //   ══════════════════════════════════════════════════════════════════════
+  //   ══════════════════════════════════════════════════════════════════════
+
+  tab name="2" cwd="~/git/express" hide_floating_panes=true {
+
+    //   ──────────────────────────────────────────────────────────────────────
+    // pane size=1 borderless=true {
+    //   plugin location="zellij:tab-bar"
+    // }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    pane {
+      size "50%"
+      name "MONGOSH"
+      command "docker"
+      args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+    }
+  }
+}

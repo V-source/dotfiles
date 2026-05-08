@@ -1,0 +1,118 @@
+layout {
+
+  //TAB 1
+  // tab name="" cwd="~/git/pushNotifications-ui" hide_floating_panes=true {
+  //   // HORIZONTAL LAYOUT - ZELLIJ STATS
+  //   // pane split_direction="vertical" size=1 {
+  //   pane size=1 borderless=true {
+  //     plugin location="zellij:tab-bar"
+  //   }
+  //   // }
+  //
+  //
+  //   floating_panes {
+  //     pane {
+  //       name: "layzygit"
+  //       x "10%"
+  //       y "10%"
+  //       width "80%"
+  //       height "80%"
+  //       command "lazygit"
+  //     }
+  //
+  //
+  //     // pane {
+  //     //   x "3%"
+  //     //   y "5%"
+  //     //   width "48%"
+  //     //   height "90%"
+  //     //   command "lazygit"
+  //     //   focus true
+  //     // }
+  //     // pane {
+  //     //   x "53%"
+  //     //   y "5%"
+  //     //   width "43%"
+  //     //   height "43%"
+  //     // }
+  //     //   pane {
+  //     //   x "53%"
+  //     //   y "52%"
+  //     //   width "43%"
+  //     //   height "43%"
+  //     //   command "btop"
+  //     //   }
+  //     //
+  //
+  //   }
+  //
+  //   // FIRST COLUMN LAYOUT - HORIZONTAL CHILDREN
+  //   pane split_direction="vertical" {
+  //     pane {
+  //       size "25%"
+  //       name "EXPO"
+  //       command "npx"
+  //       args "expo" "start"
+  //     }
+  //     pane{
+  //       focus true
+  //       size "75%" 
+  //       name "NVIM" 
+  //       command "nvim"
+  //     } 
+  //   }
+  // }
+
+
+  tab name="" cwd="~/git/pushNotifications-ui" hide_floating_panes=true {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // mark: primer panel columna-1
+
+
+    // mark: division horizontal
+
+    pane split_direction="vertical" {
+
+      // mark: primer panel horizontal
+
+      pane size="70%" split_direction="horizontal" {
+        pane{
+          focus true
+          size "75%"
+          name "nvim"
+          command "nvim"
+        }
+        pane {
+          size "25%"
+          name "opencode"
+          command "opencode"
+          // args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+        }
+      }
+      // mark: segundo panel horizontal
+      pane split_direction="horizontal" {
+        pane {
+          cwd "~/git/pushNotifications-ui"
+          // size "50%"
+          name "vite"
+          command "npm"
+          args "run" "dev"
+        }
+      }
+
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+  }
+}

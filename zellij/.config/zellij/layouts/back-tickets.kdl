@@ -1,0 +1,58 @@
+layout {
+  cwd "~/git/back-tickets"
+
+  // mark: tab 1
+
+  tab name="develepment" {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // mark: primer panel columna-1
+
+
+    // mark: division horizontal
+
+    pane split_direction="horizontal" {
+
+      // mark: primer panel horizontal
+
+      pane {
+        size "75%"
+        name "nvim"
+        command "nvim"
+      }
+
+      // mark: segundo panel horizontal
+
+      pane split_direction="vertical" {
+        pane {
+          cwd "~/git/back-tickets"
+          size "50%"
+          name "express"
+          command "npm"
+          args "run" "server"
+        }
+        pane {
+          size "50%"
+          name "mongosh"
+          command "docker"
+          args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+        }
+      }
+    }
+
+  }
+
+  tab name="LAZIGIT" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      size "100%"
+      command "lazygit"
+    }
+
+  }
+}

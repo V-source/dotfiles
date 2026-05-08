@@ -1,0 +1,105 @@
+layout {
+
+  tab name="_TICKETS SNET - CODE" cwd="~/git/snet/backends" hide_floating_panes=true {
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        command "lazygit"
+        
+      }
+    }
+
+    // FIRST COLUMN LAYOUT - HORIZONTAL CHILDREN
+    pane split_direction="vertical" size="70%" {
+      pane{
+        cwd "~/git/snet/backends/_tickets"
+        focus true
+        name "NVIM" 
+        command "nvim"
+      } 
+
+      pane split_direction="horizontal" size="30%"{
+        pane {
+          cwd "~/git/snet/backends"
+          size "70%"
+          name "EXPRESS SERVER"
+          command "npm"
+          args "run" "tickets"
+        }
+        pane split_direction="horizontal" size="30%" {
+          pane {
+            size "30%"
+            name "MONGOSH"
+            command "docker"
+            args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+          }
+          // pane {
+          //   cwd "~/git/snet/backends"
+          //   size "15%"
+          //   // name "EXPRESS SERVER"
+          //   // command "npm"
+          //   // args "run" "tickets"
+          // }
+        }
+      }
+    }
+  pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  tab name="_WEB SOCKETS SNET - CODE" cwd="~/git/snet/backends" hide_floating_panes=true {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+
+    pane split_direction="vertical" size="70%" {
+      pane{
+        cwd "~/git/snet/backends/_websockets"
+        focus true
+        name "NVIM" 
+        command "nvim"
+      } 
+
+      pane split_direction="horizontal" size="30%"{
+        pane {
+          cwd "~/git/snet/backends"
+          size "50%"
+          name "EXPRESS SERVER"
+          command "npm"
+          args "run" "websocket"
+        }
+        pane {
+          size "50%"
+          name "MONGOSH"
+          command "docker"
+          args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+        }
+      }
+    }
+
+  pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+
+}

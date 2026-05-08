@@ -1,0 +1,54 @@
+layout {
+  cwd "~/profit-server"
+
+  // mark: tab 1
+
+  tab name="develepment" {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // mark: primer panel columna-1
+
+    pane split_direction="vertical" size="75%" {
+
+      // mark: division horizontal
+
+      pane split_direction="horizontal" {
+
+        // mark: primer panel horizontal
+
+        pane {
+          size "75%"
+          name "nvim"
+          command "nvim"
+        }
+
+        // mark: segundo panel horizontal
+
+        pane {
+          size "25%"
+          name "profit-server"
+        }
+      }
+
+      // mark: segundo panel - columna 2
+
+      pane split_direction="horizontal" {
+        size "25%"
+        name "http-curl"
+
+        pane {
+          size "75%"
+          name "http-curl"
+        }
+
+        pane {
+          size "25%"
+          name "profit-server http-curl"
+        }
+      }
+    }
+  }
+}

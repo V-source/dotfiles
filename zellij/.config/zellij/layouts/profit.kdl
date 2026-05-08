@@ -1,0 +1,95 @@
+
+layout {
+  cwd "~/profit-server"
+  //TAB 1
+  tab name="dev" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // VERTICAL LAYOUT
+    pane split_direction="vertical" size="20%" {
+
+      // FIRST COLUMN LAYOUT (left) - HORIZONTAL CHILDREN 
+
+      pane split_direction="horizontal" {
+
+        pane {
+          size "80%"
+          name "remote-server-cli"
+          // command "npx"
+          // args "expo" "start"
+        }
+
+        pane {
+          size "20%"
+          name "PEACLOCK"
+          command "peaclock"
+        }
+      }
+
+      /////////////////////////////////////////////
+      // SECOND COLUMN LAYOUT (right)
+      pane{
+        focus true
+        size "60%" 
+        name "NVIM" 
+        command "nvim"
+      } 
+
+      pane{
+        size "20%" 
+        name "NVIM" 
+        command "nvim"
+        args "todo.md"
+      } 
+      /////////////////////////////////////////////
+    }
+  }
+
+  /////////////////////////////////////////////
+  // TAB 2
+  tab name="LEARNINGS" cwd="~/git/dev-learnings" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    ////////////////////////
+    pane split_direction="vertical" {
+      name "NVIM"
+      size "80%"
+      command "nvim"
+    }
+
+    pane {
+      name "algo"
+      size "20%"
+    }
+  }
+
+  /////////////////////////////////////////////
+  // TAB 3
+  tab name="PROFIT SERVER" {
+
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    ////////////////////////////////////////
+    pane split_direction="vertical" {
+      name "curl"
+      size "50%"
+      // command "winserver"
+    }
+    pane {
+      name "lazygit"
+      size "50%"
+      command "lazygit"
+    }
+  }
+
+}

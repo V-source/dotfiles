@@ -1,0 +1,72 @@
+layout {
+
+  tab name="1" cwd="~/git/snet" hide_floating_panes=true {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        cwd "~/git/snet/backends"
+      }
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    pane split_direction="vertical" {
+      pane{
+        cwd "~/git/snet/backends"
+        focus true
+        name "Editor" 
+        command "nvim"
+        size "70%"
+      } 
+      //   ──────────────────────────────────────────────────────────────────────
+      pane split_direction="horizontal"  {
+        pane {
+          cwd "~/git/snet/backends"
+          size "70%"
+          name "CLI"
+        }
+        pane {
+          cwd "~/git/snet/backends"
+          size "30%"
+
+          name "MONGOSH"
+          command "docker"
+          args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+        }
+      }
+    }
+  }
+
+
+  tab name="2" cwd="~/git/snet" hide_floating_panes=true {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        cwd "~/git/snet/backends"
+      }
+    }
+
+    //   ──────────────────────────────────────────────────────────────────────
+      pane{
+        cwd "~/git/snet/backends"
+        focus true
+        name "Opencode" 
+        command "opencode"
+      } 
+  }
+}

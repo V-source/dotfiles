@@ -1,0 +1,17 @@
+layout {
+  cwd "~/git/sn-apk"
+  pane split_direction="vertical" {
+    pane command="nvim"
+    pane{
+    size "25%" 
+      name "NOTAS" 
+      edit "./usuarios.md"
+  } 
+  }
+  pane {
+    size "30%" 
+    name "expo cli" 
+    command "npx" 
+    args "expo" "start"
+  }
+}

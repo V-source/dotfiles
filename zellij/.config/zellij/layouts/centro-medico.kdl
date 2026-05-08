@@ -1,0 +1,93 @@
+
+layout {
+  // pane_template name="custom" {}
+
+  tab name="Back." cwd="~/git/works/centro-clinico/captacion-pacientes/back" hide_floating_panes=true {
+    pane size=1 borderless=true  {
+      plugin location="zjstatus"
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        command "lazygit"
+      }
+    }
+
+
+    pane split_direction="vertical" {
+
+      pane split_direction="horizontal" size="70%"    {
+
+        pane {
+          name "Editor"
+          size "73%"
+          command "bash"
+          args "-c" "nvim; exec bash"
+        }
+
+        pane split_direction="vertical" size="27%"    {
+          pane {
+            name "Dev console"
+            command "bash"
+            args "-c" "pnpm dev; exec bash"
+          }
+          pane {
+            name "Dev rester"
+            command "bash"
+            args "-c" "pnpm rest; exec bash"
+            start_suspended true
+          }
+        }
+      }
+
+      pane{
+        name "OpenCode"
+        size "30%"
+        command "bash"
+        args "-c" "opencode; exec bash"
+      }
+    }
+
+  }
+
+  tab name="Front." cwd="~/git/works/centro-clinico/captacion-pacientes/front" hide_floating_panes=true {
+    pane size=1 borderless=true  {
+      plugin location="zjstatus"
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        command "lazygit"
+      }
+    }
+
+    pane split_direction="vertical" {
+      pane {
+        name "Dev console"
+        size "20%"
+        command "bash"
+        args "-c" "pnpm dev; exec bash"
+      }
+      pane {
+        name "Editor"
+        size "55%"
+        command "bash"
+        args "-c" "nvim; exec bash"
+      }
+      pane{
+        name "OpenCode"
+        size "25%"
+        command "bash"
+        args "-c" "opencode; exec bash"
+      }
+    }
+  }
+}

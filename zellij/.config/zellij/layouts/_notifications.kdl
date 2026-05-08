@@ -1,0 +1,164 @@
+layout {
+
+  //TAB 1
+  tab name="APK - V2" cwd="~/git/test-reactnative" hide_floating_panes=true {
+    // HORIZONTAL LAYOUT - ZELLIJ STATS
+    // pane split_direction="vertical" size=1 {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    // }
+
+
+    floating_panes {
+      pane {
+        name: "layzygit"
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+        command "lazygit"
+      }
+
+    }
+
+    // FIRST COLUMN LAYOUT - HORIZONTAL CHILDREN
+    pane split_direction="vertical" {
+      pane split_direction="horizontal" size="25%" {
+        pane {
+          size "75%"
+          name "OC"
+          command "opencode"
+          // args "expo" "start"
+        }
+        pane {
+          size "25%"
+          name "EXPO"
+          command "npx"
+          args "expo" "start"
+        }
+      }
+      pane split_direction="horizontal" {
+        pane {
+          focus true
+          size "75%" 
+          name "NVIM" 
+          command "nvim"
+        }
+
+      } 
+    }
+  }
+
+
+  tab name="SERVER - PUSH NOTIFICATIONS" cwd="~/git/push-notifications" hide_floating_panes=true {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // mark: primer panel columna-1
+
+
+    // mark: division horizontal
+
+    pane split_direction="vertical" {
+
+      // mark: primer panel horizontal
+      pane split_direction="horizontal" size="25%" {
+        pane {
+          size "65%"
+          name "OC"
+          command "opencode"
+          // args "expo" "start"
+        }
+        pane {
+          cwd "~/git/push-notifications/app"
+          name "express"
+          command "pnpm"
+          args "run" "server"
+        }
+        pane {
+          name "mongosh"
+          command "docker"
+          args "exec" "-it" "mongodb-mongodb-1" "mongosh"
+        }
+      }
+      // mark: segundo panel horizontal
+      pane size="75%" split_direction="horizontal" {
+        pane{
+          cwd "~/git/push-notifications/app/."
+          focus true
+          name "nvim"
+          command "nvim"
+        }
+      }
+
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+  }
+
+
+  // TAB WEB-UI
+  tab name="" cwd="~/git/pushNotifications-ui" hide_floating_panes=true {
+
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    // mark: primer panel columna-1
+
+
+    // mark: division horizontal
+
+    pane split_direction="vertical" {
+
+      // mark: primer panel horizontal
+
+      pane split_direction="horizontal" size="25%" {
+
+        pane {
+          size "75%"
+          name "OC"
+          command "opencode"
+          // args "expo" "start"
+        }
+        pane {
+          cwd "~/git/pushNotifications-ui"
+          size "25%"
+          name "vite"
+          command "pnpm"
+          args "dev"
+        }
+      }
+      pane size="75%" split_direction="horizontal" {
+        pane{
+          focus true
+          size "75%"
+          name "nvim"
+          command "nvim"
+        }
+      }
+      // mark: segundo panel horizontal
+
+    }
+
+    floating_panes {
+      pane {
+        x "10%"
+        y "10%"
+        width "80%"
+        height "80%"
+      }
+    }
+  }
+
+}
