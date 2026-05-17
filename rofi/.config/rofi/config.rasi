@@ -63,13 +63,11 @@
 window {
     // location: center;
   // location : northwest;
-  location : west;
+  location : center;
   x-offset : 7%;
   // y-offset : 26px;
-    // width: 480px;
-    width: 35%;
-    // height: 720px;
-    height: 90%;
+    width: 60%;
+    height: 60%;
     border:           1px;
   border-color: @lavender;
     padding:          25px;
