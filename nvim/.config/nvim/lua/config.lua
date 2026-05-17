@@ -69,9 +69,10 @@ local opts = { noremap = true, silent = true }
 
 -- select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
+keymap.set("n", "<leader>aa", "gg<S-v>G", opts)
 
 -- new tab
-keymap.set("n", "te", ":tabedit", opts)
+keymap.set("n", "te", ":tabedit ", opts)
 -- keymap.set("n", "<C><Tab>", ":tabnext<Return>", opts)
 -- keymap.set("n", "<C><S-Tab>", ":tabprev<Return>", opts)
 
@@ -131,6 +132,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fo', ":foldopen<CR>", opts)
 vim.keymap.set({ 'n' }, 'qq', ":q<CR>", opts)
 vim.keymap.set({ 'n' }, '<leader>wa', ":wa<CR>", opts)
 vim.keymap.set({ 'n' }, '<leader>wqa', ":wqa<CR>", opts)
-vim.keymap.set({ 'n' }, '<leader>xa', ":wqa<CR>", opts)
+-- vim.keymap.set({ 'n' }, '<leader>xa', ":wqa<CR>", opts)
 
 vim.keymap.set({ 'n' }, '<leader>nh', ":nohlsearch<CR>", opts)
