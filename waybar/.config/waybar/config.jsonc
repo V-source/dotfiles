@@ -1,0 +1,102 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "margin-top": 10,
+  "margin-left": 20,
+  "margin-right": 20,
+  "spacing": 10,
+
+  // He eliminado "hyprland/workspaces" de aquí
+  "modules-left": ["clock", "hyprland/language", "cpu", "memory"],
+  "modules-center": ["custom/zen"],
+  "modules-right": ["pulseaudio", "network", "keyboard-state", "tray"],
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 50,
+    "separate-outputs": true,
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "  {:%H:%M:%S}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-icons": {
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+  },
+
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "on-click": "nm-connection-editor",
+  },
+
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "US",
+    "format-es": "ES",
+  },
+
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{icon}",
+    "format-icons": {
+      "locked": "Caps: ON",
+      "unlocked": "Caps: OFF",
+    },
+  },
+
+  "tray": {
+    "spacing": 10,
+  },
+
+  // Definición del lanzador de Zen Browser
+  "custom/zen": {
+    "format": "󰈹  Brave Browser", // Icono de Firefox/Browser + Texto
+    "on-click": "brave", // El comando para abrirlo (asegúrate de que sea este)
+    "tooltip-format": "Abrir Zen Browser",
+    "tooltip": true,
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": "  {usage}%",
+    "max-length": 10,
+    "on-click": "kitty -e btop", // Al hacer clic abre un monitor real
+  },
+  "memory": {
+    "interval": 1,
+    "format": "  {used:0.1f}G",
+    "format-alt": "  {percentage}%", // Al pasar el mouse cambia a porcentaje
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB",
+  },
+}
