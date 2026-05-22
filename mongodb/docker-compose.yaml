@@ -1,0 +1,13 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:7.0-ubi8
+    container_name: mongodb_server
+    # 'always' asegura que inicie al prender la PC (si el daemon de docker está activo)
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=resilientcode
+      - MONGODB_INITDB_ROOT_PASSWORD=villejscodeforce9
+    volumes:
+      - ./data/db:/var/lib/mongodb
