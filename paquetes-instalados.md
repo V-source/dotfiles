@@ -26,6 +26,7 @@ git
 gnome-keyring
 grim
 gst-plugin-pipewire
+hardinfo2
 htop
 hunspell-es_es
 hyprland
