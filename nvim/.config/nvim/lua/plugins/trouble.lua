@@ -1,61 +1,51 @@
 return {
-  "folke/trouble.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  opts = {
-    use_diagnostic_signs = true,
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    -- Lua
-    -- vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end),
-    -- vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end),
-    -- vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end),
-    -- vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end),
-    -- vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end),
-    vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+  {
+    "folke/trouble.nvim",
+    -- Reemplazamos la dependencia antigua por mini.icons para mantener la coherencia de tu entorno
+    dependencies = { "echasnovski/mini.icons" },
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle focus=true<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble qflist toggle focus=true<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>",
+        desc = "LSP Document Symbols (Trouble)",
+      },
+      {
+        "<leader>cI",
+        "<cmd>Trouble lsp_implementations toggle focus=true<cr>",
+        desc = "LSP Implementations (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=true win.position=right<cr>",
+        desc = "Symbols Structure (Trouble)",
+      },
+      {
+        "gR",
+        "<cmd>Trouble lsp_references toggle focus=true<cr>",
+        desc = "LSP References (Trouble)",
+      },
+    },
+    opts = {
+      -- Configuraciones de UI por defecto estables
+      auto_close = false, -- No cierra el panel automáticamente si solucionas el último error
+      auto_preview = true, -- Muestra una vista previa del código al moverte por la lista de errores
+      restore = true, -- Restaura la ventana de la lista si vuelves a abrir el editor
+    },
   },
-  keys = {
-    r = "refresh",
-    R = "toggle_refresh",
-    {
-      "<leader>xX",
-      "<cmd>Trouble diagnostics toggle focus=true<cr>",
-      desc = "Diagnostics (Trouble)",
-    },
-    {
-      "<leader>xx",
-      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Buffer Diagnostics (Trouble)",
-    },
-    {
-      "<leader>xL",
-      -- "<cmd>Trouble qflist toggle focus=true win.relative=win win.position=right<cr>",
-      "<cmd>Trouble qflist toggle focus=true<cr>",
-      desc = "Quickfix List (Trouble)",
-    },
-    {
-      "<leader>cl",
-      "<cmd>Trouble lsp_document_symbols toggle focus=false win.position=right<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
-    {
-      "<leader>cI",
-      "<cmd>Trouble lsp_implementations<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
-    {
-      "<leader>cS",
-      "<cmd>Trouble symbols toggle focus=true<cr>",
-      desc = "Symbols (Trouble)",
-    },
-
-    {
-      "<leader>xQ",
-      "<cmd>Trouble qflist toggle<cr>",
-      desc = "Quickfix List (Trouble)",
-    },
-
-
-  }
-
 }

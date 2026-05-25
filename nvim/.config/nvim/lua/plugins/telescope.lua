@@ -91,35 +91,40 @@ return {
     cmd = "Telescope",
     keys = {
       -- Búsquedas Básicas
-      { "<leader>ff",      function() require("telescope.builtin").find_files() end,                desc = "Find Files" },
-      { "<leader>fg",      function() require("telescope.builtin").live_grep() end,                 desc = "Live Grep" },
-      { "<leader>fb",      function() require("telescope.builtin").buffers() end,                   desc = "Buffers" },
-      { "<leader>fht",     function() require("telescope.builtin").help_tags() end,                 desc = "Help Tags" },
-      { "<leader>fi",      function() require("telescope.builtin").current_buffer_fuzzy_find() end, desc = "Fuzzy Find Current Buffer" },
-      { ":",               "<cmd>Telescope cmdline<CR>",                                            desc = "Cmdline" },
+      { "<leader>ff",      function() require("telescope.builtin").find_files() end,                    desc = "Find Files" },
+      { "<leader>fg",      function() require("telescope.builtin").live_grep() end,                     desc = "Live Grep" },
+      { "<leader>fb",      function() require("telescope.builtin").buffers() end,                       desc = "Buffers" },
+      { "<leader>fht",     function() require("telescope.builtin").help_tags() end,                     desc = "Help Tags" },
+      { "<leader>fi",      function() require("telescope.builtin").current_buffer_fuzzy_find() end,     desc = "Fuzzy Find Current Buffer" },
+      { ":",               "<cmd>Telescope cmdline<CR>",                                                desc = "Cmdline" },
 
       -- Treesitter e Inteligencia LSP
-      { "<leader>ts",      function() require("telescope.builtin").treesitter() end,                desc = "Treesitter Symbols" },
-      { "<leader>fs",      function() require("telescope.builtin").lsp_document_symbols() end,      desc = "LSP Document Symbols" },
-      { "<leader>fr",      function() require("telescope.builtin").lsp_references() end,            desc = "LSP References" },
-      { "<leader>fw",      function() require("telescope.builtin").grep_string() end,               desc = "Grep Word Under Cursor" },
-      { "<leader>fd",      function() require("telescope.builtin").lsp_definitions() end,           desc = "LSP Definitions" },
-      { "<leader>fI",      function() require("telescope.builtin").lsp_implementations() end,       desc = "LSP Implementations" },
+      { "<leader>ts",      function() require("telescope.builtin").treesitter() end,                    desc = "Treesitter Symbols" },
+      { "<leader>fs",      function() require("telescope.builtin").lsp_document_symbols() end,          desc = "LSP Document Symbols" },
+      { "<leader>fr",      function() require("telescope.builtin").lsp_references() end,                desc = "LSP References" },
+      { "<leader>fw",      function() require("telescope.builtin").grep_string() end,                   desc = "Grep Word Under Cursor" },
+      { "<leader>fd",      function() require("telescope.builtin").lsp_definitions() end,               desc = "LSP Definitions" },
+      { "<leader>fI",      function() require("telescope.builtin").lsp_implementations() end,           desc = "LSP Implementations" },
+      -- Nuevos super-atajos de navegación
+      { "<leader>fS",      function() require("telescope.builtin").lsp_workspace_symbols() end,         desc = "LSP Workspace Symbols" },
+      { "<leader>fy",      function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, desc = "LSP Dynamic Symbols" },
+      { "<leader>ft",      function() require("telescope.builtin").lsp_type_definitions() end,          desc = "LSP Type Definitions" },
+      { "<leader>fD",      function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end,      desc = "LSP Buffer Diagnostics" },
 
       -- Utilidades de Navegación
-      { "<leader>lq",      function() require("telescope.builtin").quickfix() end,                  desc = "Quickfix List" },
-      { "<leader>fgf",     function() require("telescope.builtin").git_files() end,                 desc = "Git Files" },
-      { "<leader>lm",      function() require("telescope.builtin").marks() end,                     desc = "Marks" },
-      { "<leader>lp",      function() require("telescope.builtin").builtin() end,                   desc = "Telescope Builtins" },
-      { "<leader>lqh",     function() require("telescope.builtin").quickfixhistory() end,           desc = "Quickfix History" },
-      { "<leader>reg",     function() require("telescope.builtin").registers() end,                 desc = "Registers" },
-      { "<leader>lj",      function() require("telescope.builtin").jumplist() end,                  desc = "Jumplist" },
+      { "<leader>lq",      function() require("telescope.builtin").quickfix() end,                      desc = "Quickfix List" },
+      { "<leader>fgf",     function() require("telescope.builtin").git_files() end,                     desc = "Git Files" },
+      { "<leader>lm",      function() require("telescope.builtin").marks() end,                         desc = "Marks" },
+      { "<leader>lp",      function() require("telescope.builtin").builtin() end,                       desc = "Telescope Builtins" },
+      { "<leader>lqh",     function() require("telescope.builtin").quickfixhistory() end,               desc = "Quickfix History" },
+      { "<leader>reg",     function() require("telescope.builtin").registers() end,                     desc = "Registers" },
+      { "<leader>lj",      function() require("telescope.builtin").jumplist() end,                      desc = "Jumplist" },
 
       -- Explorador de archivos (File Browser)
-      { "<leader><space>", "<cmd>Telescope file_browser<CR>",                                       desc = "File Browser",             noremap = true },
+      { "<leader><space>", "<cmd>Telescope file_browser<CR>",                                           desc = "File Browser",             noremap = true },
 
       -- Gestión de Git Worktrees
-      { "<leader>wt",      "<cmd>Telescope telescope_worktree git_worktrees<CR>",                   desc = "Git Worktrees" },
+      { "<leader>wt",      "<cmd>Telescope telescope_worktree git_worktrees<CR>",                       desc = "Git Worktrees" },
 
       -- Búsqueda Avanzada de Comentarios/Marcas (Sintaxis Corregida)
       {

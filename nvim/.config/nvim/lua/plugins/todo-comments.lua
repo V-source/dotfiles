@@ -17,26 +17,26 @@ return {
   config = function()
     require("todo-comments").setup({
       keywords = {
-        FIX  = { icon = "🔥", color = "error", alt = { "fix", "FIXME", "bug", "issue","fixit", "BUG", "FIXIT", "ISSUE" } },
+        FIX  = { icon = "🔥", color = "error", alt = { "fix", "FIXME", "bug", "issue", "fixit", "BUG", "FIXIT", "ISSUE" } },
 
         -- TODO = { icon = " ", color = "info", alt = { "TASK", "todo" } },
         TODO = { icon = "● ", color = "info", alt = { "TASK", "todo" } },
-        HACK = { icon = " ", color = "warning", alt = {"hack"} },
-        WARN = { icon = "⚠", color = "warning", alt = { "WARNING", "warn",  } },
+        HACK = { icon = " ", color = "warning", alt = { "hack" } },
+        WARN = { icon = "⚠", color = "warning", alt = { "WARNING", "warn", } },
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optimize" } },
         NOTE = { icon = "📝", color = "hint", alt = { "INFO", 'note' } },
-        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "testing", "test", "PASSED","passed","failed", "FAILED" } },
+        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "testing", "test", "PASSED", "passed", "failed", "FAILED" } },
         DONE = { icon = "x ", color = "#A7BFE3", alt = { "COMPLETED", "done" } },
         comm = { icon = "❱ ", color = "#AAAAAA", alt = { "comment" } },
         NOW  = { icon = "∕", color = "#b15065", alt = { "now", "working", "work", "onWork", "on_work" } },
-        MARK = {icon = "🔖", color= "#7f849c", alt = {'mark'}},
-        IDEA = {icon = "⚡", color= "#fab387", alt = {'tip', 'TIP', 'idea', 'IDEA'}},
+        MARK = { icon = "🔖", color = "#7f849c", alt = { 'mark' } },
+        IDEA = { icon = "⚡", color = "#fab387", alt = { 'tip', 'TIP', 'idea', 'IDEA' } },
         -- para componentes
         comp = { icon = "✮ ", color = "#5C9AFF", alt = { 'cmp', 'comp' } },
       },
--- 👓
--- 
--- 🔱
+      -- 👓
+      -- 
+      -- 🔱
 
 
       gui_style = {
