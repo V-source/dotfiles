@@ -10,6 +10,8 @@ vim.cmd [[
  let &t_SI = "\e[5 q"
  let &t_EI = "\e[2 q"
 ]]
+-- vim.api.nvim_command('set commentstring=//%s')
+-- vim.bo.commentstring = '// %s'
 ---------------------------------------------
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- vim.opt.wrap = false
