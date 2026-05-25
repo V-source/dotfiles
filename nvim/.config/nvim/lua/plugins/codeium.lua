@@ -1,14 +1,34 @@
 return {
-  'Exafunction/codeium.vim',
-  event = 'BufEnter',
-  config = function()
-    -- Change '<C-g>' here to any keycode you like.
-    vim.keymap.set('i', '<C-Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-    vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
-      { expr = true, silent = true })
-    vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
-      { expr = true, silent = true })
-    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
-  end
+  {
+    "Exafunction/codeium.vim",
+    event = "BufEnter",
+    config = function()
+      -- Desactivamos los mapas por defecto para evitar colisiones
+      vim.g.codeium_disable_bindings = 1
 
+      -- ╭─────────────────────────────────────────────────────────╮
+      -- │                 C O D E I U M   M A P S                 │
+      -- ╰─────────────────────────────────────────────────────────╯
+
+      -- Aceptar sugerencia completa (Activo gracias a tu fix de Kitty)
+      vim.keymap.set("i", "<C-Tab>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true, silent = true, desc = "Codeium Accept" })
+
+      -- Siguiente sugerencia
+      vim.keymap.set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true, silent = true, desc = "Codeium Next" })
+
+      -- Sugerencia anterior
+      vim.keymap.set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true, silent = true, desc = "Codeium Prev" })
+
+      -- Limpiar sugerencia actual
+      vim.keymap.set("i", "<c-x>", function()
+        return vim.fn["codeium#Clear"]()
+      end, { expr = true, silent = true, desc = "Codeium Clear" })
+    end,
+  },
 }
