@@ -17,7 +17,7 @@ return {
     startify.file_icons.provider = "devicons"
     -- Estructuramos el layout combinando tu texto y los archivos recientes
     startify.config.layout = {
-      { type = "padding", val = 2 },
+      { type = "padding", val = 9 },
 
       -- 1. Tu bloque de citas personalizado
       {
