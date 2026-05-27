@@ -117,7 +117,7 @@ return {
       { "<leader>lm",      function() require("telescope.builtin").marks() end,                         desc = "Marks" },
       { "<leader>lp",      function() require("telescope.builtin").builtin() end,                       desc = "Telescope Builtins" },
       { "<leader>lqh",     function() require("telescope.builtin").quickfixhistory() end,               desc = "Quickfix History" },
-      { "<leader>reg",     function() require("telescope.builtin").registers() end,                     desc = "Registers" },
+      -- { "<leader>reg",     function() require("telescope.builtin").registers() end,                     desc = "Registers" },
       { "<leader>lj",      function() require("telescope.builtin").jumplist() end,                      desc = "Jumplist" },
 
       -- Explorador de archivos (File Browser)
