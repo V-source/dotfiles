@@ -1,13 +1,28 @@
+# services:
+#   mongodb:
+#     image: mongodb/mongodb-community-server:7.0-ubi8
+#     # image: mongodb/mongodb-community-server:8.0-ubi9-slim
+#     container_name: mongodb_server
+#     # 'always' asegura que inicie al prender la PC (si el daemon de docker está activo)
+#     restart: always
+#     ports:
+#       - "27017:27017"
+#     environment:
+#       - MONGODB_INITDB_ROOT_USERNAME=resilientcode
+#       - MONGODB_INITDB_ROOT_PASSWORD=villejscodeforce9
+#     volumes:
+#       - ./data/db:/var/lib/mongodb
+#       # - ./data/db:/data/db
 services:
   mongodb:
-    image: mongodb/mongodb-community-server:7.0-ubi8
+    # Cambiamos a la imagen oficial estándar de Docker Hub
+    image: mongo:7.0
     container_name: mongodb_server
-    # 'always' asegura que inicie al prender la PC (si el daemon de docker está activo)
     restart: always
     ports:
       - "27017:27017"
     environment:
-      - MONGODB_INITDB_ROOT_USERNAME=resilientcode
-      - MONGODB_INITDB_ROOT_PASSWORD=villejscodeforce9
+      - MONGO_INITDB_ROOT_USERNAME=resilientcode
+      - MONGO_INITDB_ROOT_PASSWORD=villejscodeforce9
     volumes:
-      - ./data/db:/var/lib/mongodb
+      - ./data/db:/data/db
