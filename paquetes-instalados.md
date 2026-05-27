@@ -6,116 +6,110 @@
 
 ```
 7zip
-android-tools
-base
-base-devel
-bat
+- [x] android-tools
+- [x] base
+- [x] base-devel
+- [x] bat
 bluez
 bluez-utils
-btop
-cava
-docker
-docker-buildx
-docker-compose
-dolphin
+- [x] btop
+- [x] cava
+- [x] docker
+- [x] docker-buildx
+- [x] docker-compose
+- [x] dolphin
 drawio-desktop
-dunst
+- [x] dunst
 efibootmgr
-fzf
-git
+- [x] fzf
+- [x] git
 gnome-keyring
 grim
 gst-plugin-pipewire
 hardinfo2
 htop
-hunspell-es_es
-hyprland
-hyprlock
-hyprpaper
+- [x] hunspell-es_es
+- [x] hyprland
+- [x] hyprlock
+- [x] hyprpaper
 inetutils
-intel-media-driver
-intel-ucode
+-[x] intel-media-driver intel-ucode libva-intel-driver
 iwd
-jdk17-openjdk
+- [x] jdk17-openjdk
 kdenlive
-kitty
+- [x] kitty
 kooha
-lazydocker
-lazygit
+- [x] lazydocker
+- [x] lazygit
 libpulse
-libreoffice-still-es
-libva-intel-driver
-linux
-linux-firmware
+- [x] libreoffice-still-es
+- [x] linux
+- [x] linux-firmware
 lrzip
 lvm2
 mpv
 nano
-neovim
-network-manager-applet
-networkmanager
-noto-fonts
-noto-fonts-cjk
-noto-fonts-emoji
-noto-fonts-extra
+- [x] neovim
+- [x] network-manager-applet
+- [x] networkmanager
+- [x] noto-fonts
+- [x] noto-fonts-cjk
+- [x] noto-fonts-emoji
+- [x] noto-fonts-extra
 nwg-look
-obs-studio
-ollama
-otf-font-awesome
-pavucontrol
-pipewire
-pipewire-alsa
-pipewire-jack
-pipewire-pulse
-polkit-gnome
-polkit-kde-agent
-python-adblock
-qt5-wayland
-qt6-wayland
-qutebrowser
-rofi
-scrcpy
-sddm
+- [x] obs-studio
+- [x] ollama
+- [x] otf-font-awesome
+pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse
+- [x] polkit-gnome
+- [x] polkit-kde-agent
+- [x] python-adblock
+- [x] qt5-wayland
+- [x] qt6-wayland
+- [x] qutebrowser
+- [x] rofi
+- [x] scrcpy
+- [x] sddm
 slurp
 smartmontools
-stow
-sudo
-superfile
-tree
-tree-sitter-cli
-ttf-dejavu
-ttf-jetbrains-mono-nerd
-ttf-liberation
-ttyper
+- [x] stow
+- [x] sudo
+- [x] superfile
+- [x] tree
+- [x] tree-sitter-cli
+- [x] ttf-dejavu
+- [x] ttf-jetbrains-mono-nerd
+- [x] ttf-liberation
+- [x] ttyper
 unrar
 unzip
 uwsm
-v4l2loopback-utils
-vim
+- [x] v4l2loopback-utils
+- [x] vim
 vulkan-intel
 vulkan-nouveau
 vulkan-radeon
 vulkan-tools
-waybar
-wget
+- [x] waybar
+- [x] wget
 wireless_tools
 wireplumber
-wl-clipboard
+- [x] wl-clipboard
 wlsunset
-wofi
+- [x] wofi
 wpa_supplicant
-xdg-desktop-portal-gtk
-xdg-desktop-portal-hyprland
-xdg-utils
-xf86-video-amdgpu
-xf86-video-ati
-xf86-video-nouveau
-xorg-server
-xorg-xinit
-yazi
+- [x] xdg-desktop-portal-gtk
+- [x] xdg-desktop-portal-hyprland
+- [x] xdg-utils
+- [x] xf86-video-amdgpu
+- [x] xf86-video-ati
+- [x] xf86-video-nouveau
+- [x] xorg-server
+- [x] xorg-xinit
+- [x] yazi
 yt-dlp
-zellij
-zenity
+- [x] zellij
+- [x] zenity
 zip
 zram-generator
 ```
@@ -124,16 +118,13 @@ zram-generator
 
 ```
 accounts-qml-module
-android-studio
-bookokrat-bin
-bookokrat-bin-debug
-brave-bin
-bruno-bin
-bruno-bin-debug
+- [x] android-studio
+bookokrat-bin bookokrat-bin-debug
+- [x] brave-bin
+bruno-bin bruno-bin-debug
 catppuccin-gtk-theme-mocha
 downgrade
-gpu-screen-recorder-gtk-git
-gpu-screen-recorder-gtk-git-debug
+-[x] gpu-screen-recorder-gtk-git gpu-screen-recorder-gtk-git-debug
 neovim-git-debug
 obs-composite-blur
 obs-composite-blur-debug
@@ -141,9 +132,9 @@ riseup-vpn
 riseup-vpn-debug
 simplescreenrecorder
 simplescreenrecorder-debug
-unimatrix-git
-yay
-yay-debug
+- [x] unimatrix-git
+- [x] yay
+- [x] yay-debug
 zen-browser-bin
 ```
 
