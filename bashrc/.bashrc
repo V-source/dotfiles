@@ -145,7 +145,8 @@ source "$OSH"/oh-my-bash.sh
 # alias ohmybash="mate ~/.oh-my-bash"
 #
 # DOCKER CONTAINER - MONGO
-export MONGODB_VERSION=7.0-ubi8
+# export MONGODB_VERSION=7.0-ubi8
+export MONGODB_VERSION=7.0
 
 export EDITOR=nvim
 export TERM=kitty
@@ -158,9 +159,14 @@ alias lg="lazygit"
 alias gt="cd ~/git && yazi"
 alias zj="zellij"
 alias bs="nvim ~/.bashrc"
-alias matrix="unimatrix -f -b -s 93"
-alias mongo="docker compose --file $HOME/git/mongodb/docker-compose.yml exec mongodb"
+alias matrix="unimatrix -f -b -s 93 -c black -a"
+# legacy
+# alias mongo="docker compose --file $HOME/git/mongodb/docker-compose.yml exec mongodb"
+# alias msh="docker exec -it mongodb_server mongosh --username resilientcode --password villejscodeforce9 --authenticationDatabase admin"
+# NEW
+alias mongo="docker compose --file $HOME/git/mongodb/docker-compose.yml"
 alias msh="docker exec -it mongodb_server mongosh --username resilientcode --password villejscodeforce9 --authenticationDatabase admin"
+
 alias profit="sshfs sucrenet@10.8.0.134:/Users/Sucrenet/git/profit-server ~/profit-server/"
 alias music="musikcube"
 
@@ -302,3 +308,6 @@ ks() {
         echo "Error: La sesión '$session_name' no existe."
     fi
 }
+
+# opencode
+export PATH=/home/villegas/.opencode/bin:$PATH
