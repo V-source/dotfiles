@@ -1,43 +1,44 @@
 /* --- Estilo Minimalista para Waybar --- */
 
 * {
-    /* Fuente recomendada: JetBrainsMono Nerd Font */
+  /* Fuente recomendada: JetBrainsMono Nerd Font */
   font-family: "JetBrainsMono Nerd Font", "JetBrainsMonoNF", "JetBrains Mono Nerd Font", "Symbols Nerd Font", sans-serif;
-    font-weight: bold;
-    font-size: 13px;
-    border: none;
-    border-radius: 0;
+  font-weight: bold;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
 }
 
 window#waybar {
-    background-color: rgba(30, 30, 46, 0); /* Color oscuro con transparencia (Hex: #1e1e2e) */
-    /* border-bottom: 2px solid rgba(255, 255, 255, 0.1); */
-    color: #cdd6f4;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background-color: rgba(30, 30, 46, 0);
+  /* Color oscuro con transparencia (Hex: #1e1e2e) */
+  /* border-bottom: 2px solid rgba(255, 255, 255, 0.1); */
+  color: #cdd6f4;
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
 /* --- Módulos individuales --- */
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #fab387;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
+  padding: 0 5px;
+  background-color: transparent;
+  color: #fab387;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
 }
 
 #workspaces button.active {
-    background-color: #313244;
-    color: #89b4fa;
-    border-bottom: 3px solid #89b4fa;
-    border-radius: 5px;
+  background-color: #313244;
+  color: #89b4fa;
+  border-bottom: 3px solid #89b4fa;
+  border-radius: 5px;
 }
 
 #workspaces button:hover {
-    background-color: rgba(137, 180, 250, 0.2);
-    box-shadow: inherit;
-    text-shadow: inherit;
+  background-color: rgba(137, 180, 250, 0.2);
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #clock,
@@ -59,59 +60,66 @@ window#waybar {
 #mpd,
 #language,
 #custom-zen,
-#keyboard-state{
-    padding: 0 18px;
-    color: #cdd6f4;
-    /* background-color: #313244; */
-background-color: rgba(49, 50, 68, 0.6);
-    border-radius: 50px;
-    margin: 4px 2px;
+#keyboard-state {
+  padding: 0 18px;
+  color: #cdd6f4;
+  /* background-color: #313244; */
+  background-color: rgba(49, 50, 68, 0.6);
+  border-radius: 50px;
+  margin: 4px 2px;
 }
 
 /* --- Colores específicos para destacar --- */
 
 #clock {
-    color: #f5c2e7; /* Rosa suave */
-    font-weight: bold;
+  color: #f5c2e7;
+  /* Rosa suave */
+  font-weight: bold;
 }
 
-#battery.charging, #battery.plugged {
-    color: #a6e3a1; /* Verde */
+#battery.charging,
+#battery.plugged {
+  color: #a6e3a1;
+  /* Verde */
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f38ba8; /* Rojo */
-    color: #11111b;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #f38ba8;
+  /* Rojo */
+  color: #11111b;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes blink {
-    to {
-        background-color: #f38ba8;
-        color: #ffffff;
-    }
+  to {
+    background-color: #f38ba8;
+    color: #ffffff;
+  }
 }
 
 #pulseaudio {
-    color: #89b4fa; /* Azul */
+  color: #89b4fa;
+  /* Azul */
 }
 
 #network {
-    color: #94e2d5; /* Turquesa */
+  color: #94e2d5;
+  /* Turquesa */
 }
 
 #keyboard-state {
-    color: #fab387; /* Naranja */
-    /* background-color: #313244; */
+  color: #fab387;
+  /* Naranja */
+  /* background-color: #313244; */
 
-background-color: rgba(49, 50, 68, 0.6);
-    padding: 0 10px;
-    /* border-radius: 8px; */
-    margin: 4px 2px;
+  background-color: rgba(49, 50, 68, 0.6);
+  padding: 0 10px;
+  /* border-radius: 8px; */
+  margin: 4px 2px;
 }
 
 #language {
@@ -125,26 +133,30 @@ background-color: rgba(49, 50, 68, 0.6);
 }
 
 #custom-zen {
-    color: #89b4fa; /* Color azul suave */
-    /* background-color: #313244; */
-background-color: rgba(49, 50, 68, 0.6);
-    padding: 0 15px;
-    margin: 4px 0;
-    /* border-radius: 10px; */
-    font-weight: bold;
-    transition: all 0.3s ease;
+  color: #89b4fa;
+  /* Color azul suave */
+  /* background-color: #313244; */
+  background-color: rgba(49, 50, 68, 0.6);
+  padding: 0 15px;
+  margin: 4px 0;
+  /* border-radius: 10px; */
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 #custom-zen:hover {
-    background-color: #45475a;
-    color: #b4befe; /* Cambia a un lila al pasar el mouse */
+  background-color: #45475a;
+  color: #b4befe;
+  /* Cambia a un lila al pasar el mouse */
 }
+
 /* El contenedor del calendario (Tooltip) */
 tooltip {
-    /* background: #1e1e2e;  */
-background-color: rgba(49, 50, 68, 0.9);
-    /* border-radius: 10px; */
-    border: 2px solid #89b4fa; /* Borde azul suave */
+  /* background: #1e1e2e;  */
+  background-color: rgba(49, 50, 68, 0.9);
+  /* border-radius: 10px; */
+  border: 2px solid #89b4fa;
+  /* Borde azul suave */
 }
 
 /* CAVA - Visualizador de audio */
@@ -165,16 +177,20 @@ background-color: rgba(49, 50, 68, 0.9);
 /* } */
 
 tooltip label {
-    color: #cdd6f4; /* Color del texto */
-    font-family: "JetBrainsMono Nerd Font"; /* Importante: usar fuente mono para alinear */
-    font-size: 15px;
-    padding: 10px;
+  color: #cdd6f4;
+  /* Color del texto */
+  font-family: "JetBrainsMono Nerd Font";
+  /* Importante: usar fuente mono para alinear */
+  font-size: 15px;
+  padding: 10px;
 }
 
 #cpu,
 #memory {
-  background: rgba(30, 30, 46, 0.4); /* Fondo muy suave */
-  color: #cba6f7; /* Lavanda */
+  background: rgba(30, 30, 46, 0.4);
+  /* Fondo muy suave */
+  color: #cba6f7;
+  /* Lavanda */
   padding: 0 12px;
   margin: 4px 3px;
   /* border-radius: 8px; */
@@ -182,9 +198,11 @@ tooltip label {
 }
 
 #cpu {
-  color: #89b4fa; /* Azul para CPU */
+  color: #89b4fa;
+  /* Azul para CPU */
 }
 
 #memory {
-  color: #a6e3a1; /* Verde para RAM */
+  color: #a6e3a1;
+  /* Verde para RAM */
 }
