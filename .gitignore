@@ -1,1 +1,17 @@
 mongodb/mongodb/data/
+
+# node_modules
+opencode/.config/opencode/node_modules/
+**/node_modules/
+
+# Archivos de intercambio de vim/nvim
+*.swp
+*.swo
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Caché de Python
+__pycache__/
+*.pyc
