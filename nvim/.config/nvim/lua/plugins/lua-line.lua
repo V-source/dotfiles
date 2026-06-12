@@ -100,12 +100,12 @@ return {
     end
     require('lualine').setup({
       options = {
-        theme = "catppuccin",
+theme = pcall(require, "catppuccin.lualine") and "catppuccin" or "auto",
+        -- theme = "catppuccin",
         icons_enabled = true,
         component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
-
         globalstatus = true,
       },
       sections = {

@@ -265,7 +265,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # front camera scrcpy
 alias frontcam='scrcpy --no-audio --video-source=camera --camera-id=1 --camera-size=1920x1080 --window-title="front camera" --always-on-top;'
-alias backcam='scrcpy --no-audio --video-source=camera --video-codec=h265 --window-title="back camera" --orientation=180 --camera-size=1920x1080 --camera-id=0;'
+alias backcam='scrcpy --no-audio --video-source=camera --video-codec=h265 --window-title="back camera" --orientation=0 --camera-size=1920x1080 --camera-id=0;'
 alias camaudio='scrcpy  --video-source=camera --video-codec=h265 --window-title="back camera" --orientation=180 --camera-size=1920x1080 --camera-id=0;'
 alias sc='scrcpy --stay-awake --keyboard=aoa --mouse=aoa --max-fps=60'
 

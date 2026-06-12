@@ -1,8 +1,8 @@
 return {
   {
-    "LuxVim/nvim-luxmotion",
+    "josstei/whisk.nvim",
     config = function()
-      require("luxmotion").setup({
+      require("whisk").setup({
         cursor = {
           duration = 350,
           easing = "ease-out",

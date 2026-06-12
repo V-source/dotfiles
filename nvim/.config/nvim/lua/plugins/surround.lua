@@ -1,7 +1,7 @@
 return {
   {
     'kylechui/nvim-surround',
-    version = '*',
+    version = "^3.0.0",
     event = 'VeryLazy',
     config = function()
       -- require('nvim-surround').setup()
@@ -25,6 +25,7 @@ return {
         -- highlight =     -- Defines highlight behavior
         -- move_cursor =   -- Defines cursor behavior
         -- indent_lines =  -- Defines line indentation behavior
+        -- vim.g.nvim_surround_no_ * _mappings
       })
     end
   }
