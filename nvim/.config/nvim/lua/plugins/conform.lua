@@ -5,11 +5,11 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       -- Añadimos tanto los formatters como los linters a la lista de auto-instalación
-      vim.list_extend(opts.ensure_installed, { 
-        "prettier", 
+      vim.list_extend(opts.ensure_installed, {
+        "prettier",
         "stylua",
-        "eslint_d",     -- Linter para JS/TS/Astro
-        "markdownlint"  -- Linter para Markdown
+        "eslint_d",    -- Linter para JS/TS/Astro
+        "markdownlint" -- Linter para Markdown
       })
     end,
   },
@@ -58,7 +58,6 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         astro = { "eslint_d" },
-        markdown = { "markdownlint" },
       }
 
       -- Autocomando nativo para ejecutar el linter automáticamente al escribir o guardar

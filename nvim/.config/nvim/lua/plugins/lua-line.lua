@@ -100,7 +100,7 @@ return {
     end
     require('lualine').setup({
       options = {
-theme = pcall(require, "catppuccin.lualine") and "catppuccin" or "auto",
+        theme = pcall(require, "catppuccin.lualine") and "catppuccin" or "auto",
         -- theme = "catppuccin",
         icons_enabled = true,
         component_separators = { left = '|', right = '|' },
@@ -117,15 +117,15 @@ theme = pcall(require, "catppuccin.lualine") and "catppuccin" or "auto",
             file_status = true,
             path = 1,
           },
+          { require('project_notes').statusline_component },
           {
             get_current_task,
             color = {
-              fg = '#ffffff',
-              bg = '#BB1B47',
+              fg = '#f38ba8',
+              -- bg = '#89b4fa',
               gui = 'bold',
             }
-          }
-          -- { require('project_notes').statusline_component },
+          },
         },
         -- lualine_x = { {
         --   get_current_task,
@@ -197,7 +197,7 @@ theme = pcall(require, "catppuccin.lualine") and "catppuccin" or "auto",
         --     bg = '#BB1B47',
         --     gui = 'bold',
         --   }
-        -- }}
+        -- } }
         -- lualine_z = { { msg, color = { bg = '#cba6f7', fg = '#11111b', gui = 'bold' } } },
       },
     })

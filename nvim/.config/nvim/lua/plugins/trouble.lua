@@ -12,7 +12,7 @@ return {
       },
       {
         "<leader>xx",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
         desc = "Buffer Diagnostics (Trouble)",
       },
       {
@@ -40,12 +40,22 @@ return {
         "<cmd>Trouble lsp_references toggle focus=true<cr>",
         desc = "LSP References (Trouble)",
       },
+      -- {
+      --   "<leader>lt",
+      --   "<cmd>Trouble todo toggle filter.buf=0 focus=true<cr>",
+      --   desc = "Buffer todo (Trouble)",
+      -- },
+      -- {
+      --   "<leader>lT",
+      --   "<cmd>Trouble todo toggle focus=true<cr>",
+      --   desc = "Buffer todo (Trouble)",
+      -- },
     },
     opts = {
       -- Configuraciones de UI por defecto estables
-      auto_close = false, -- No cierra el panel automáticamente si solucionas el último error
+      auto_close = false,  -- No cierra el panel automáticamente si solucionas el último error
       auto_preview = true, -- Muestra una vista previa del código al moverte por la lista de errores
-      restore = true, -- Restaura la ventana de la lista si vuelves a abrir el editor
+      restore = true,      -- Restaura la ventana de la lista si vuelves a abrir el editor
     },
   },
 }

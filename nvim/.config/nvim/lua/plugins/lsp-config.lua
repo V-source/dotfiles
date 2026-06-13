@@ -159,10 +159,12 @@ return {
           "html",
           "emmet_ls",
           "marksman",
+          "markdown_oxide",
           "dockerls",
           "docker_compose_language_service",
           "cssls",
-          "bashls"
+          "bashls",
+          "hyprls"
         },
       })
     end,
@@ -247,9 +249,19 @@ return {
       })
 
       -- MARKDOWN
-      setup_server("marksman", {
-        filetypes = { "markdown" },
-        root_markers = { ".git", "README.md" },
+      -- setup_server("marksman", {
+      --   filetypes = { "markdown" },
+      --   root_markers = { ".git", "README.md" },
+      -- })
+
+      setup_server("markdown_oxide", {
+        filetypes = { "markdown", "md" },
+        init_options = {
+          -- Extensions opcionales de markdown_oxide
+          checkboxes = true,
+          math = true,
+          mentions = true,
+        },
       })
 
       -- DOCKER
@@ -288,6 +300,16 @@ return {
             globPattern = vim.env.GLOB_PATTERN or '*@(.sh|.inc|.bash|.command)',
           },
         },
+      })
+
+      setup_server("hyprls", {
+        cmd = { "hyprls" },
+        settings = {
+          hyprls = {
+            preferIgnoreFile = false,
+            ignore = { "hyprlock.conf", "hypridle.conf", 'hyprland.conf' }
+          }
+        }
       })
 
       -- 4. KEYMAPS NATIVOS
