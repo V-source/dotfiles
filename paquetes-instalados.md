@@ -139,3 +139,16 @@ zen-browser-bin
 ```
 
 ## Total: 134 paquetes (112 oficiales + 22 AUR)
+
+
+# NUEVOS PAQUETES
+- [x] lazysql
+    - [url](https://github.com/jorgerojas26/lazysql#installation)
+    - **install**: `yay -S lazysql`
+- [x] bt (better-tree)
+    - [url](https://github.com/LeperGnome/bt)
+    - **install**: go install github.com/LeperGnome/bt/cmd/bt@v1.2.2
+- [ ] vi-mongo
+    - [repo](https://github.com/kopecmaciej/vi-mongo)
+    - [page](https://vi-mongo.com/)
+    - **install** `yay -S vi-mongo`
