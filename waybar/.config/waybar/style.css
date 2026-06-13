@@ -2,7 +2,9 @@
 
 * {
   /* Fuente recomendada: JetBrainsMono Nerd Font */
-  font-family: "JetBrainsMono Nerd Font", "JetBrainsMonoNF", "JetBrains Mono Nerd Font", "Symbols Nerd Font", sans-serif;
+  font-family:
+    "JetBrainsMono Nerd Font", "JetBrainsMonoNF", "JetBrains Mono Nerd Font",
+    "Symbols Nerd Font", sans-serif;
   font-weight: bold;
   font-size: 13px;
   border: none;
@@ -15,7 +17,7 @@ window#waybar {
   /* border-bottom: 2px solid rgba(255, 255, 255, 0.1); */
   color: #cdd6f4;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 /* --- Módulos individuales --- */
@@ -116,7 +118,7 @@ window#waybar {
   /* Naranja */
   /* background-color: #313244; */
 
-  background-color: rgba(49, 50, 68, 0.6);
+  /* background-color: rgba(49, 50, 68, 0.6); */
   padding: 0 10px;
   /* border-radius: 8px; */
   margin: 4px 2px;
