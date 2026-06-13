@@ -278,8 +278,8 @@ alias sc='scrcpy --stay-awake --keyboard=aoa --mouse=aoa --max-fps=60'
 # pnpm
 export PNPM_HOME="/home/villegas/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 export PNPM_HOME="/home/villegas/.local/share/pnpm"
@@ -311,3 +311,5 @@ ks() {
 
 # opencode
 export PATH=/home/villegas/.opencode/bin:$PATH
+
+. "$HOME/.turso/env"
