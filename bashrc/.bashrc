@@ -157,9 +157,10 @@ alias pclock="peaclock"
 # alias yz="yazi"
 alias lg="lazygit"
 alias gt="cd ~/git && yazi"
-alias zj="zellij"
+# alias zj="zellij"
 alias bs="nvim ~/.bashrc"
-alias matrix="unimatrix -f -b -s 93 -c black -a"
+# alias matrix="unimatrix -f -b -s 93 -c black -a"
+alias matrix="unimatrix -f -s 97 -c green -f -a -n -l kksn -o"
 # legacy
 # alias mongo="docker compose --file $HOME/git/mongodb/docker-compose.yml exec mongodb"
 # alias msh="docker exec -it mongodb_server mongosh --username resilientcode --password villejscodeforce9 --authenticationDatabase admin"
@@ -218,13 +219,13 @@ winserver() {
 
 
 # Zellij
-z() {
-  zellij 
-}
-zjl() {
-# zellij layout
-  zellij --layout $1
-}
+# z() {
+#   zellij 
+# }
+# zjl() {
+# # zellij layout
+#   zellij --layout $1
+# }
 
 
 # para ejecutar nvim en las carpetas de configuracion especificada
@@ -313,3 +314,8 @@ ks() {
 export PATH=/home/villegas/.opencode/bin:$PATH
 
 . "$HOME/.turso/env"
+
+eval "$(zoxide init bash)"
+
+# youtui-player
+alias ytp='youtui-player'
