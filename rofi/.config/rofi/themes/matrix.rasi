@@ -1,0 +1,14 @@
+* {
+    background-color: #000000;
+    border-color:     #00FF33;
+    text-color:       #00FF33;
+    font:             "Mono 12";
+}
+window {
+    border:           2;
+    padding:          5;
+}
+element selected {
+    background-color: #00FF33;
+    text-color:       #000000;
+}

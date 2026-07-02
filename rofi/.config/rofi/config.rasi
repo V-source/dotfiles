@@ -187,3 +187,4 @@ scrollbar {
 
 }
 // @theme "/usr/share/rofi/themes/catppuccin-mocha.rasi"
+// @theme "./themes/matrix.rasi"
