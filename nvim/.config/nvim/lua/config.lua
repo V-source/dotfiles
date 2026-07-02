@@ -33,7 +33,7 @@ vim.cmd("set cursorcolumn")
 vim.cmd("set number relativenumber")
 vim.cmd("set encoding=utf-8")
 vim.cmd("set autoindent")
-vim.cmd("syntax on")
+-- syntax on se omite: treesitter maneja el resaltado
 vim.cmd("set wildmenu")
 vim.cmd("set wildmode=list:longest")
 vim.cmd("set guioptions-=m")
@@ -140,7 +140,7 @@ vim.keymap.set({ 'n' }, '<leader>wqa', ":wqa<CR>", opts)
 vim.keymap.set({ 'n' }, '<leader>nh', ":nohlsearch<CR>", opts)
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
+  pattern = "markdown",
   callback = function()
     vim.cmd("highlight mdDone guifg=#a6e3a1 guibg=#11111b gui=bold")
     vim.cmd("highlight mdOnw guifg=#89b4fa guibg=#11111b gui=bold")

@@ -159,7 +159,6 @@ return {
           "html",
           "emmet_ls",
           "marksman",
-          "markdown_oxide",
           "dockerls",
           "docker_compose_language_service",
           "cssls",
@@ -200,7 +199,7 @@ return {
       -- JAVASCRIPT / TYPESCRIPT
       setup_server("ts_ls", {
         cmd = { "typescript-language-server", "--stdio" },
-        filetypes = { "astro", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        filetypes = { "astro", "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
         root_markers = { "tsconfig.json", "jsconfig.json", ".git" },
         init_options = {
           preferences = { disableSuggestions = false },
@@ -231,7 +230,7 @@ return {
       setup_server("html", {
         capabilities = html_capabilities,
         init_options = {
-          configurationSection = { "html", "jsx", "javascriptreact", "tsx", 'typescriptreact', "astro" },
+          configurationSection = { "html", "jsx", "javascriptreact", "tsx", 'typescriptreact', "astro", "javascript" },
           embeddedLanguages = { css = true, javascript = true },
           provideFormatter = true
         },
@@ -306,10 +305,13 @@ return {
         cmd = { "hyprls" },
         settings = {
           hyprls = {
-            preferIgnoreFile = false,
+            -- preferIgnoreFile = false,
             ignore = { "hyprlock.conf", "hypridle.conf", 'hyprland.conf' }
           }
         }
+      })
+      setup_server("gls_analizer", {
+        cmd = { "gls_analizer" },
       })
 
       -- 4. KEYMAPS NATIVOS
