@@ -33,7 +33,7 @@ vim.cmd("set cursorcolumn")
 vim.cmd("set number relativenumber")
 vim.cmd("set encoding=utf-8")
 vim.cmd("set autoindent")
--- syntax on se omite: treesitter maneja el resaltado
+vim.cmd("syntax on")
 vim.cmd("set wildmenu")
 vim.cmd("set wildmode=list:longest")
 vim.cmd("set guioptions-=m")

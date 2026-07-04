@@ -22,8 +22,13 @@ return {
 
     require("nvim-treesitter").install(ensure_installed)
 
+    local filetype_patterns = vim.list_extend(
+      { "typescriptreact", "javascriptreact" },
+      ensure_installed
+    )
+
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = ensure_installed,
+      pattern = filetype_patterns,
       callback = function(args)
         local ft = vim.bo[args.buf].filetype
         local lang = vim.treesitter.language.get_lang(ft)
