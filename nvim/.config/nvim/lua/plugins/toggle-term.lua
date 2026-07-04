@@ -13,7 +13,7 @@ return {
             return vim.o.columns * 0.4
           end
         end,
-        open_mapping = [[<leader>tg]],
+        open_mapping = [[<C-\>]],
         hide_numbers = true,
         shade_filetypes = {},
         shade_terminals = true,
