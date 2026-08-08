@@ -162,7 +162,7 @@ alias gt="cd ~/git && yazi"
 # alias zj="zellij"
 alias bs="nvim ~/.bashrc"
 # alias matrix="unimatrix -f -b -s 93 -c black -a"
-alias matrix="unimatrix -f -s 97 -c green -f -a -n -l kksn -o"
+alias matrix="unimatrix -f -s 95 -c green -f -a -n -l kksn -o"
 # legacy
 # alias mongo="docker compose --file $HOME/git/mongodb/docker-compose.yml exec mongodb"
 # alias msh="docker exec -it mongodb_server mongosh --username resilientcode --password villejscodeforce9 --authenticationDatabase admin"
@@ -277,6 +277,7 @@ alias frontcam='scrcpy --no-audio --video-source=camera --camera-id=1 --camera-s
 alias backcam='scrcpy --no-audio --video-source=camera --video-codec=h265 --window-title="back camera" --orientation=0 --camera-size=1920x1080 --camera-id=0;'
 alias camaudio='scrcpy  --video-source=camera --video-codec=h265 --window-title="back camera" --orientation=180 --camera-size=1920x1080 --camera-id=0;'
 alias sc='scrcpy --stay-awake --keyboard=aoa --mouse=aoa --max-fps=60'
+alias scdio='scrcpy --no-video --no-control'
 
 # pnpm
 export PNPM_HOME="/home/villegas/.local/share/pnpm"
