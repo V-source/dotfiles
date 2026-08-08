@@ -294,6 +294,15 @@
         "--tools=agent"
       ],
       "type": "local"
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "pnpm",
+        "dlx",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
     }
   },
   "permission": {
