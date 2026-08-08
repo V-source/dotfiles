@@ -161,3 +161,5 @@ Causa #7 (hl groups)  ──→ highlights inestables
 
 Causa #9 (InsertEnter) ──→ carga diferida frágil
 ```
+
+
