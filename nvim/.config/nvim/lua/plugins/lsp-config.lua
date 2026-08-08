@@ -163,7 +163,8 @@ return {
           "docker_compose_language_service",
           "cssls",
           "bashls",
-          "hyprls"
+          "hyprls",
+          "rust_analyzer"
         },
       })
     end,
@@ -312,6 +313,30 @@ return {
       })
       setup_server("gls_analizer", {
         cmd = { "gls_analizer" },
+      })
+
+      -- RUST
+      setup_server("rust_analyzer", {
+        cmd = { "rust-analyzer" },
+        filetypes = { "rust" },
+        root_markers = { "Cargo.toml", "rust-toolchain.toml", "rust-toolchain", ".git" },
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy",
+            },
+            inlayHints = {
+              bindingModeHints = true,
+              chainingHints = true,
+              closingBraceHints = "always",
+              closureReturnTypeHints = "always",
+              lifetimeElisionHints = "always",
+              parameterHints = true,
+              reborrowHints = "always",
+              typeHints = true,
+            },
+          },
+        },
       })
 
       -- 4. KEYMAPS NATIVOS

@@ -8,6 +8,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "prettier",
         "stylua",
+        "rustfmt",
         "eslint_d",    -- Linter para JS/TS/Astro
         "markdownlint" -- Linter para Markdown
       })
@@ -31,6 +32,7 @@ return {
           astro = { "prettier" },
           html = { "prettier" },
           css = { "prettier" },
+          rust = { "rustfmt" },
         },
         format_on_save = {
           lsp_fallback = true,
