@@ -303,6 +303,17 @@
         "@playwright/mcp@latest"
       ],
       "enabled": true
+    },
+    "semgrep": {
+      "type": "local",
+      "command": ["semgrep", "mcp"],
+      "enabled": true
+    },
+    // 2. ast-grep Oficial (Búsqueda y filtrado estructural por AST)
+    "ast_grep": {
+      "type": "local",
+      "command": ["ast-grep-server"],
+      "enabled": true
     }
   },
   "permission": {
